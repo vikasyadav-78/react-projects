@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+.buttonCart:hover{
+    background-color: red;
+    transition: all .5s ease;
+    color: #fff;
+    cursor: pointer;
+}
