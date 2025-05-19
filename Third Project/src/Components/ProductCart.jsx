@@ -48,14 +48,14 @@ export default function ProductCart(props) {
 
   return (
     <>
-      <div className='flex justify-between'>
+      <div className='flex justify-between relative'>
         <div className='text-start font-bold'>
           <label >Filter </label>
           <select name="" id="" className='border-2 rounded' onChange={(e) => handleFilter(e.target.value)}>
-            <option className='font-bold' value="All">All</option>
-            <option className='font-bold' value="Cars">Cars</option>
-            <option className='font-bold' value="Electric">Electric</option>
-            <option className='font-bold' value="Shirt">Shirt</option>
+            <option className='font-bold text-white bg-black' value="All">All</option>
+            <option className='font-bold text-white bg-black' value="Cars">Cars</option>
+            <option className='font-bold text-white bg-black' value="Electric">Electric</option>
+            <option className='font-bold text-white bg-black' value="Shirt">Shirt</option>
           </select>
         </div>
         <div className='flex'>
@@ -63,20 +63,21 @@ export default function ProductCart(props) {
             {mode === "light" ? <button onClick={color}><MdLightMode className='text-2xl cursor-pointer' /></button> : <button><MdDarkMode className='text-2xl cursor-pointer' onClick={color} /></button>}
           </div>
           <div className='flex'>
-            <button onClick={() => setCartOpen((close) => !close)} className='cursor-pointer'><FaShoppingCart className='text-2xl' /></button>
+            <button onClick={() => setCartOpen((prev) => !prev)} className='cursor-pointer'><FaShoppingCart className='text-2xl' /></button>
             {addCartItem.length > 0 && <span className='bg-blue-700 h-5 w-5 pt-0.5 rounded-full'><sup className='font-bold'>{addCartItem.length}</sup></span>}
           </div>
-          {cartOpen && <div className='absolute top-28 bg-white right-0'>
-            <div className='flex p-5 justify-between bg-white border-b'>
-              <h1 className='font-bold text-2xl'>Carts</h1>
-              <button onClick={() => setCartOpen((close) => !close)} className='font-bold border p-1 px-3 buttonCart'>X</button>
-            </div>
-            <div>
-              {addCartItem.length <= 0 && <p className='font-black text-2xl p-3'>No Item!</p>}
-            </div>
-            <Cart add={addCartItem} setAdd={setAddCartItem} />
-          </div>}
+
         </div>
+        {cartOpen && <div className='absolute top-15 bg-white right-0 p-3 shadow-2xl shadow-amber-300 '>
+          <div className='flex p-5 justify-between bg-white border-b'>
+            <h1 className='font-bold text-2xl'>Carts</h1>
+            <button onClick={() => setCartOpen((close) => !close)} className='font-bold border p-1 px-3 buttonCart'>X</button>
+          </div>
+          <div>
+            {addCartItem.length <= 0 && <p className='font-black text-2xl p-3'>No Item!</p>}
+          </div>
+          <Cart add={addCartItem} setadd={setAddCartItem} />
+        </div>}
       </div>
       <div className='flex justify-evenly flex-wrap' style={{ height: "auto", width: "100%" }}>
         {filterdData.map((datas) => <div className='shadow-2xl shadow-blue-700  m-5 p-5'>
