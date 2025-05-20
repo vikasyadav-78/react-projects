@@ -29,14 +29,22 @@ export default function ProductCart(props) {
   }
 
   const color = () => {
+    let bgcolors = document.getElementById("modes").style.backgroundColor = "white";
+    let colors = document.getElementById("modes").style.color = "black";
     if (mode === "light") {
       document.body.style.backgroundColor = "white";
       document.body.style.color = "black";
+      document.getElementById("modes").style.backgroundColor = "white";
+      document.getElementById("modes").style.color = "black";
+      bgcolors.style.backgroundColor = "white";
+      colors.style.color = "black"
       setMode("dark")
     }
     else {
       document.body.style.backgroundColor = "black";
       document.body.style.color = "white";
+      document.getElementById("modes").style.backgroundColor = "black";
+      document.getElementById("modes").style.color = "white";
       setMode("light");
     }
   }
@@ -48,7 +56,7 @@ export default function ProductCart(props) {
 
   return (
     <>
-      <div className='flex justify-between relative'>
+      <div className='flex justify-between relative' >
         <div className='text-start font-bold'>
           <label >Filter </label>
           <select name="" id="" className='border-2 rounded' onChange={(e) => handleFilter(e.target.value)}>
@@ -71,8 +79,8 @@ export default function ProductCart(props) {
           </div>
 
         </div>
-        {cartOpen && <div className='absolute top-15 bg-white right-0 p-3 shadow-2xl shadow-amber-300 '>
-          <div className='flex p-5 justify-between bg-white border-b'>
+        {cartOpen && <div className='absolute top-15  right-0 p-3 shadow-2xl shadow-amber-300 ' id='modes'>
+          <div className='flex p-5 justify-between border-b'>
             <h1 className='font-bold text-2xl'>Carts</h1>
             <button onClick={() => setCartOpen((close) => !close)} className='font-bold border p-1 px-3 buttonCart'>X</button>
           </div>
