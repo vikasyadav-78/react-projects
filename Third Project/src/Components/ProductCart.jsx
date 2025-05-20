@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { products } from '../Data/prodects'
 import { FaShoppingCart } from "react-icons/fa";
-import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { MdDarkMode, MdLightMode, MdLogout } from "react-icons/md";
 import Cart from './Cart';
 
 
@@ -58,13 +58,16 @@ export default function ProductCart(props) {
             <option className='font-bold text-white bg-black' value="Shirt">Shirt</option>
           </select>
         </div>
-        <div className='flex'>
+        <div className='flex items-center'>
           <div className='me-10'>
             {mode === "light" ? <button onClick={color}><MdLightMode className='text-2xl cursor-pointer' /></button> : <button><MdDarkMode className='text-2xl cursor-pointer' onClick={color} /></button>}
           </div>
           <div className='flex'>
             <button onClick={() => setCartOpen((prev) => !prev)} className='cursor-pointer'><FaShoppingCart className='text-2xl' /></button>
             {addCartItem.length > 0 && <span className='bg-blue-700 h-5 w-5 pt-0.5 rounded-full'><sup className='font-bold'>{addCartItem.length}</sup></span>}
+          </div>
+          <div className='ms-8 mt-2'>
+            <button className='cursor-pointer' onClick={props.logout}> <MdLogout className='text-2xl font-bold' /></button>
           </div>
 
         </div>

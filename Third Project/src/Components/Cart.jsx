@@ -6,7 +6,7 @@ export default function Cart(props) {
         let updateCard = props.add.filter((items) => {
             return items.id !== id;
         })
-        props.setAdd(updateCard)
+        props.setadd(updateCard)  
     }
 
     const totalAmount = props.add.reduce((pre, cur) => pre + cur.price, 0)
