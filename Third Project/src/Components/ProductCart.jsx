@@ -29,22 +29,14 @@ export default function ProductCart(props) {
   }
 
   const color = () => {
-    let bgcolors = document.getElementById("modes").style.backgroundColor = "white";
-    let colors = document.getElementById("modes").style.color = "black";
     if (mode === "light") {
       document.body.style.backgroundColor = "white";
       document.body.style.color = "black";
-      document.getElementById("modes").style.backgroundColor = "white";
-      document.getElementById("modes").style.color = "black";
-      bgcolors.style.backgroundColor = "white";
-      colors.style.color = "black"
       setMode("dark")
     }
     else {
       document.body.style.backgroundColor = "black";
       document.body.style.color = "white";
-      document.getElementById("modes").style.backgroundColor = "black";
-      document.getElementById("modes").style.color = "white";
       setMode("light");
     }
   }
@@ -79,7 +71,7 @@ export default function ProductCart(props) {
           </div>
 
         </div>
-        {cartOpen && <div className='absolute top-15  right-0 p-3 shadow-2xl shadow-amber-300 ' id='modes'>
+        {cartOpen && <div className={mode==="light" ?'absolute top-15  text-white right-0 p-3 bg-black shadow-2xl shadow-amber-300 ' :'absolute top-15  right-0 p-3 bg-white text-black shadow-2xl shadow-amber-300 '}>
           <div className='flex p-5 justify-between border-b'>
             <h1 className='font-bold text-2xl'>Carts</h1>
             <button onClick={() => setCartOpen((close) => !close)} className='font-bold border p-1 px-3 buttonCart'>X</button>
@@ -87,12 +79,12 @@ export default function ProductCart(props) {
           <div>
             {addCartItem.length <= 0 && <p className='font-black text-2xl p-3'>No Item!</p>}
           </div>
-          <Cart add={addCartItem} setadd={setAddCartItem} />
+          <Cart add={addCartItem} setadd={setAddCartItem} mode={mode} setmode={setMode} />
         </div>}
       </div>
       <div className='flex justify-evenly flex-wrap' style={{ height: "auto", width: "100%" }}>
         {filterdData.map((datas) => <div className='shadow-2xl shadow-blue-700  m-5 p-5'>
-          <img className='h-80 w-80 object-cover' src={datas.img} alt="" />
+          <img className='h-80 w-100 object-cover' src={datas.img} alt="" />
           <p className='text-bold text-start p-1 font-bold'>Name : {datas.name}</p>
           <p className='text-bold text-start p-1 font-bold'>Price : {datas.price}</p>
           <button type='button' onClick={() => cartsAdd(datas)} className='text-white mt-5 bg-blue-700 rounded-lg w-28 py-1  gap-3 flex px-4 align-middle cursor-pointer'>{datas.btn}</button>

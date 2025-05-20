@@ -3,17 +3,30 @@ import React from 'react'
 export default function Cart(props) {
 
     const removeItem = (id) => {
-        let updateCard = props.add.filter((items) => {
-            return items.id !== id;
+        let updateCard = props.add.filter((item) => {
+            return item.id !== id;
         })
-        props.setadd(updateCard)  
+        props.setadd(updateCard)
     }
 
     const totalAmount = props.add.reduce((pre, cur) => pre + cur.price, 0)
 
+    const color = () => {
+        if (props.mode === "light") {
+            document.body.style.backgroundColor = "white";
+            document.body.style.color = "black";
+            props.setmode("dark")
+        }
+        else {
+            document.body.style.backgroundColor = "black";
+            document.body.style.color = "white";
+            props.setmode("light");
+        }
+    }
+
     return (
         <>
-            <div className='flex flex-col gap-20 border-b h-100 w-100 max-h-85 bg-white overflow-y-auto no-scrollbar relative'>
+            <div className={props.mode==="light" ?'flex flex-col gap-20 border-b w-100 max-h-85 bg-black text-white overflow-y-auto no-scrollbar relative' :'flex flex-col gap-20 border-b w-100 max-h-85 bg-white text-black overflow-y-auto no-scrollbar relative'}>
                 {props.add.map((items) => <div>
                     <div className='flex justify-between items-center p-3'>
                         <div>
