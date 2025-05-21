@@ -9,20 +9,22 @@ export default function Cart(props) {
         props.setadd(updateCard)
     }
 
-    const totalAmount = props.add.reduce((pre, cur) => pre + cur.price, 0)
+    const totalAmount = props.add.reduce((pre, cur) => pre + parseFloat(cur.price.replace(/,/g,"")) ,0)
+    let displayPrice = totalAmount.toLocaleString("en-IN")
 
-    const color = () => {
-        if (props.mode === "light") {
-            document.body.style.backgroundColor = "white";
-            document.body.style.color = "black";
-            props.setmode("dark")
-        }
-        else {
-            document.body.style.backgroundColor = "black";
-            document.body.style.color = "white";
-            props.setmode("light");
-        }
-    }
+
+    // const color = () => {
+    //     if (props.mode === "light") {
+    //         document.body.style.backgroundColor = "white";
+    //         document.body.style.color = "black";
+    //         props.setmode("dark")
+    //     }
+    //     else {
+    //         document.body.style.backgroundColor = "black";
+    //         document.body.style.color = "white";
+    //         props.setmode("light");
+    //     }
+    // }
 
     return (
         <>
@@ -32,7 +34,7 @@ export default function Cart(props) {
                         <div>
                             <img className='object-cover' width={"60%"} src={items.img} alt="" />
                             <h1 className='font-bold text-start mt-3'>Name : {items.name}</h1>
-                            <h1 className='font-bold text-start'>Price : {items.price}</h1>
+                            <h1 className='font-bold text-start'>Price : ₹ {items.price}</h1>
                         </div>
                         <button onClick={() => removeItem(items.id)} className='font-bold border p-1 px-3 buttonCart'>X</button>
                     </div>
@@ -40,7 +42,7 @@ export default function Cart(props) {
                 )}
                 <div className='flex gap-7  border-t-1 py-2'>
                     <h1 className='font-bold'>Total : </h1>
-                    <p className='font-bold'> {totalAmount}</p>
+                    <p className='font-bold'> ₹ {displayPrice}</p>
                 </div>
             </div>
         </>

@@ -70,6 +70,7 @@ export default function Form() {
 
     const logout = () => {
         setLogin(false)
+        notify3();
     }
 
     return (
