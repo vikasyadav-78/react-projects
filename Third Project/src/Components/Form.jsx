@@ -14,6 +14,7 @@ export default function Form() {
     const notify1 = () => toast("Please Fill the input");
     const notify2 = () => toast("Your password length is not Valid");
     const notify3 = () => toast("Your Are Log Out ");
+    const notify4 = () => toast("Successfully Added");
 
     // const logIn = () => {
     //     let username = "Vikas@Yadav"

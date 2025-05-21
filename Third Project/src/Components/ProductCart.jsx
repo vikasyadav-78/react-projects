@@ -45,7 +45,7 @@ export default function ProductCart(props) {
     addCartItem.includes(prodect) ? addCartItem : setAddCartItem([...addCartItem, prodect])
   }
 
- 
+
 
   return (
     <>
@@ -72,7 +72,7 @@ export default function ProductCart(props) {
           </div>
 
         </div>
-        {cartOpen && <div className={mode==="light" ?'absolute top-15  text-white right-0 p-3 bg-black shadow-2xl shadow-amber-300 ' :'absolute top-15  right-0 p-3 bg-white text-black shadow-2xl shadow-amber-300 '}>
+        {cartOpen && <div className={mode === "light" ? 'absolute top-15  text-white right-0 p-3 bg-black shadow-2xl shadow-amber-300 ' : 'absolute top-15  right-0 p-3 bg-white text-black shadow-2xl shadow-amber-300 '}>
           <div className='flex p-5 justify-between border-b'>
             <h1 className='font-bold text-2xl'>Carts</h1>
             <button onClick={() => setCartOpen((close) => !close)} className='font-bold border p-1 px-3 buttonCart'>X</button>

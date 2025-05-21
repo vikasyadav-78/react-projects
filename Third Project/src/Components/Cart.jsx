@@ -9,7 +9,7 @@ export default function Cart(props) {
         props.setadd(updateCard)
     }
 
-    const totalAmount = props.add.reduce((pre, cur) => pre + parseFloat(cur.price.replace(/,/g,"")) ,0)
+    const totalAmount = props.add.reduce((pre, cur) => pre + parseFloat(cur.price.replace(/,/g, "")), 0)
     let displayPrice = totalAmount.toLocaleString("en-IN")
 
 
@@ -28,7 +28,7 @@ export default function Cart(props) {
 
     return (
         <>
-            <div className={props.mode==="light" ?'flex flex-col gap-20 border-b w-100 max-h-85 bg-black text-white overflow-y-auto no-scrollbar relative' :'flex flex-col gap-20 border-b w-100 max-h-85 bg-white text-black overflow-y-auto no-scrollbar relative'}>
+            <div className={props.mode === "light" ? 'flex flex-col gap-20 border-b w-100 max-h-85 bg-black text-white overflow-y-auto no-scrollbar relative' : 'flex flex-col gap-20 border-b w-100 max-h-85 bg-white text-black overflow-y-auto no-scrollbar relative'}>
                 {props.add.map((items) => <div>
                     <div className='flex justify-between items-center p-3'>
                         <div>
