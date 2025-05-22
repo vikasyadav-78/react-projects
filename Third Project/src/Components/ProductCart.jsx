@@ -3,6 +3,7 @@ import { products } from '../Data/prodects'
 import { FaShoppingCart } from "react-icons/fa";
 import { MdDarkMode, MdLightMode, MdLogout } from "react-icons/md";
 import Cart from './Cart';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 export default function ProductCart(props) {
@@ -12,12 +13,15 @@ export default function ProductCart(props) {
   const [cartOpen, setCartOpen] = useState(false);
 
 
+
+
   // const filters = filterdData==="All"?products:products.filter((item)=>{
   //   return item.category===filterdData
   // })
   // console.log(filters);
 
-
+  const notify = () => toast("Your Product added in cart");
+  const notify1 = () => toast("Your Product already added");
   const handleFilter = (value) => {
     if (value != "All") {
       const filter = products.filter((item) => item.category === value);
@@ -42,7 +46,8 @@ export default function ProductCart(props) {
   }
 
   const cartsAdd = (prodect) => {
-    addCartItem.includes(prodect) ? addCartItem : setAddCartItem([...addCartItem, prodect])
+    addCartItem.includes(prodect) ? addCartItem(notify1()) : setAddCartItem([...addCartItem, prodect])
+    notify();
   }
 
 
