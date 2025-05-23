@@ -1,7 +1,7 @@
 export const products = [
     { id: 1, category: "Electric", img: "https://img.freepik.com/free-photo/laptop-stone-surface-sea-background_1232-430.jpg", name: "laptop", price: '18,000', btn: "Add to cart" },
     { id: 2, category: "Cars", img: "https://www.financialexpress.com/wp-content/uploads/2024/10/Mahindra-Scorpio-N-Boss-edition.jpg", name: "Scorpio", price: '20,00,000', btn: "Add to cart" },
-    { id: 3, category: "Shirt", img: "https://m.media-amazon.com/images/I/61SpK7fk-oL._AC_UY1100_.jpg", name: "Men's Shirt", price: 350, btn: "Add to cart" },
+    { id: 3, category: "Shirt", img: "https://m.media-amazon.com/images/I/61SpK7fk-oL._AC_UY1100_.jpg", name: "Men's Shirt", price: '350', btn: "Add to cart" },
     { id: 4, category: "Electric", img: "https://saudewala.in/cdn/shop/collections/Laptop.jpg?v=1732216115&width=1296", name: "laptop", price: '20,000', btn: "Add to cart" },
     { id: 5, category: "Cars", img: "https://imgd.aeplcdn.com/664x374/n/cw/ec/137767/fortuner-legender-exterior-left-front-three-quarter-5.jpeg?isig=0&q=80", name: "Fortuner", price: '50,00,000', btn: "Add to cart" },
     { id: 6, category: "Electric", img: "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTIZuolNDuA7kVeQfkIX6_u3e4UkejIHzZZZw-jlVWIEmYBvZcKSVi6OKnWAToV1MybOsBV_WEkYuIDKAJlBftsNZQpHi9dSxqRYA7LYVLr5oq_Ebl2Dea54OagoIiIAUXcVwNMRg&usqp=CAc", name: "Samsung Galaxy S25", price: '11,199', btn: "Add to cart" },
