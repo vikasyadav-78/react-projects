@@ -45,6 +45,7 @@ export default function LikeunLikeCommet() {
 
         <div>
         {commint.map((commnet) =>
+        
             <div className=''>
 
             </div>
