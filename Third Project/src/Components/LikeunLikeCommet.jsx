@@ -23,7 +23,6 @@ export default function LikeunLikeCommet(props) {
         progress: undefined,
         theme: "dark",
     });
-    console.log(notify);
 
     const like = () => {
         setLike(Like + 1)

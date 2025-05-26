@@ -12,7 +12,6 @@ export default function Form() {
     const [showpass, setshowpass] = useState("password");
 
     const notify = () => toast("WelCome back User ");
-    
     const notify1 = () => toast("Please Fill the input");
     const notify2 = () => toast("Your password length is not Valid");
     const notify3 = () => toast("Your Are Log Out ");
@@ -46,9 +45,10 @@ export default function Form() {
             setuserName("")
         } else {
             setLogin(true)
-            notify();
             setpassword("")
             setuserName("")
+            notify();
+            console.log(notify)
         }
     }
     function showbtn() {
