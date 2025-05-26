@@ -11,8 +11,8 @@ function App() {
   return (
     <>
      {/* <Header /> */}
-     {/* <Form /> */}
-     <LikeunLikeCommet />
+     <Form />
+     {/* <LikeunLikeCommet /> */}
     </>
   )
 }

@@ -4,6 +4,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { MdDarkMode, MdLightMode, MdLogout } from "react-icons/md";
 import Cart from './Cart';
 import { ToastContainer, toast } from 'react-toastify';
+import LikeunLikeCommet from './LikeunLikeCommet';
 
 
 export default function ProductCart(props) {
@@ -93,7 +94,13 @@ export default function ProductCart(props) {
           <img className='h-80 w-80 object-cover' src={datas.img} alt="" />
           <p className='text-bold text-start p-1 font-bold'>Name : {datas.name}</p>
           <p className='text-bold text-start p-1 font-bold'>Price : ₹ {datas.price}</p>
-          <button type='button' onClick={() => cartsAdd(datas)} className='text-white mt-5 bg-blue-700 rounded-lg w-28 py-1  gap-3 flex px-4 align-middle cursor-pointer'>{datas.btn}</button>
+          <div className='flex gap-5'>
+            <button type='button' className='text-white mt-5 bg-red-600 hover:bg-red-500 w-25 py-1  gap-3 flex px-4 align-middle cursor-pointer'>Buy Now</button>
+            <button type='button' onClick={() => cartsAdd(datas)} className='text-white mt-5 hover:bg-blue-500 bg-blue-700 w-30 py-1  gap-3 flex px-4 align-middle cursor-pointer'>Add to Cart</button>
+          </div>
+          <div className='mt-5'>
+            <LikeunLikeCommet />
+          </div>
         </div>
         )}
       </div>

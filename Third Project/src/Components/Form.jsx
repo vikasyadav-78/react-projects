@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import Header from './Header';
-import ProductCart from './ProductCart';
+// import ProductCart from './ProductCart';
 
 export default function Form() {
 
@@ -94,10 +94,7 @@ export default function Form() {
             </div>:<div className={login == false ? "hidden" : "mt-10"}>
                 <Header logout = {logout} /> 
                 {/* <ProductCart /> */}
-            </div>}
-
-
-            
+            </div>}        
             <ToastContainer />
         </>
     )
