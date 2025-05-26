@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 
 
-export default function LikeunLikeCommet() {
+export default function LikeunLikeCommet(props) {
     const [Like, setLike] = useState(0)
     const [UnLike, setUnLike] = useState(0)
     const [commint, setCommint] = useState([])
@@ -24,7 +24,7 @@ export default function LikeunLikeCommet() {
         theme: "dark",
     });
     console.log(notify);
-    
+
     const like = () => {
         setLike(Like + 1)
     }
@@ -66,7 +66,7 @@ export default function LikeunLikeCommet() {
             </div>
 
             <div className='text-start mt-5 border w-[80%] flex'>
-                <input value={input} onChange={inputValue} className='text-start  h-9 outline-0 p-1 w-full' type="text" placeholder='Comment.....' />
+                {props.mode==="light" ? <input value={input} onChange={inputValue} className='text-start  h-9 outline-0 p-1 w-full bg-black text-white fw-bold' type="text" placeholder='Comment.....' /> : <input value={input} onChange={inputValue} className='text-start  h-9 outline-0 p-1 w-full bg-white text-black fw-bold' type="text" placeholder='Comment.....' />}
                 <button onClick={comments} className='cursor-pointer'><IoMdSend className='text-2xl' /></button>
             </div>
 

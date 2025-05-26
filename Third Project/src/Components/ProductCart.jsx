@@ -99,7 +99,7 @@ export default function ProductCart(props) {
             <button type='button' onClick={() => cartsAdd(datas)} className='text-white mt-5 hover:bg-blue-500 bg-blue-700 w-30 py-1  gap-3 flex px-4 align-middle cursor-pointer'>Add to Cart</button>
           </div>
           <div className='mt-5'>
-            <LikeunLikeCommet />
+            <LikeunLikeCommet  mode={mode} />
           </div>
         </div>
         )}
