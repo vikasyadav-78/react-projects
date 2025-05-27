@@ -57,7 +57,7 @@ export default function ProductCart(props) {
       return product.id === item.id;
     })
     if (index === -1) {
-      const newCart = [...addCartItem, { ...product, quantity: 1 }]
+      const newCart = [...addCartItem, { ...product, quantity: 1}]
       setAddCartItem(newCart)
     } else {
       const Updatequantity = [...addCartItem]
@@ -65,6 +65,8 @@ export default function ProductCart(props) {
       setAddCartItem(Updatequantity)
     }
   }
+
+  
   
 
   return (
