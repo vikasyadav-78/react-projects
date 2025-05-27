@@ -12,7 +12,7 @@ export default function ProductCart(props) {
   const [mode, setMode] = useState("black");
   const [addCartItem, setAddCartItem] = useState([]);
   const [cartOpen, setCartOpen] = useState(false);
-
+  const [cartCount, setCartCount] = useState(1)
 
 
 
@@ -46,12 +46,37 @@ export default function ProductCart(props) {
     }
   }
 
-  const cartsAdd = (prodect) => {
-    addCartItem.includes(prodect) ? addCartItem(notify1()) : setAddCartItem([...addCartItem, prodect])
-    notify();
+  // const cartsAdd = (prodect) => {
+  //   addCartItem.includes(prodect) ? addCartItem(notify1()) : setAddCartItem([...addCartItem, prodect])
+  //   notify();
+  // }
+
+  const cartsAdd = (product) => {
+    const index = addCartItem.findIndex((item) => {
+      return product.id === item.id;
+    })
+    if (index === -1) {
+      const newCart = [...addCartItem, { ...product, quantity: cartCount }]
+      setAddCartItem(newCart)
+    } else {
+      const Updatequantity = [...addCartItem]
+      Updatequantity[index].quantity += 1
+      setAddCartItem(Updatequantity)
+    }
   }
-
-
+  const addItems = () => {
+    setCartCount(cartCount + 1)
+  }
+  const deletItem = (id) => {
+    if (cartCount > 1) {
+      setAddCartItem(cartCount - 1)
+    } else {
+      let updateCard = props.add.filter((item) => {
+        return item.id !== id;
+      })
+      setAddCartItem(updateCard)
+    }
+  }
 
   return (
     <>
@@ -86,7 +111,7 @@ export default function ProductCart(props) {
           <div>
             {addCartItem.length <= 0 && <p className='font-black text-2xl p-3'>No Item!</p>}
           </div>
-          <Cart add={addCartItem} setadd={setAddCartItem} mode={mode} setmode={setMode} />
+          <Cart add={addCartItem} setadd={setAddCartItem} countIncriment={addItems}  countDecriment={deletItem} mode={mode} setmode={setMode} />
         </div>}
       </div>
       <div className='flex justify-evenly flex-wrap' style={{ height: "auto", width: "100%" }}>

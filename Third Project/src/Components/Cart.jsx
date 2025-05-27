@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 
 export default function Cart(props) {
 
-    const [count , setCount] = useState(1);
     const removeItem = (id) => {
         let updateCard = props.add.filter((item) => {
             return item.id !== id;
@@ -14,15 +13,9 @@ export default function Cart(props) {
     const totalAmount = props.add.reduce((pre, cur) => pre + parseFloat(cur.price.replace(/,/g, "")), 0)
     let displayPrice = totalAmount.toLocaleString("en-IN")
 
-
-    const countIncriment = (items) =>{
-        setCount(count +1)
-    }
-    const countDecriment = () =>{
-        if(count>1){
-            setCount(count - 1)
-        }
-    }
+    const countAdd = () => props.countIncriment;
+    const countDelet = () => props.countDecriment;
+    
 
     // const color = () => {
     //     if (props.mode === "light") {
@@ -47,9 +40,9 @@ export default function Cart(props) {
                             <h1 className='font-bold text-start mt-3'>Name : {items.name}</h1>
                             <h1 className='font-bold text-start'>Price : ₹ {items.price}</h1>
                             <div className='flex gap-6 mt-3 items-center'>
-                                <button onClick={countDecriment} className='font-bold border p-1 px-3 buttonCart'>-</button>
-                                <p className=''>{count}</p>
-                                <button className='font-bold border p-1 px-3 buttonCart' onClick={()=>countIncriment()}>+</button>
+                                <button onClick={} className='font-bold border p-1 px-3 buttonCart'>-</button>
+                                <p className=''>{items.quantity}</p>
+                                <button className='font-bold border p-1 px-3 buttonCart'>+</button>
                             </div>
                         </div>
                         <button onClick={() => removeItem(items.id)} className='font-bold border p-1 px-3 buttonCart'>X</button>
