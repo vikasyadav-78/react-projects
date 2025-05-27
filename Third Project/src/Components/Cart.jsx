@@ -10,11 +10,8 @@ export default function Cart(props) {
     }
 
     
-    const totalAmount = props.add.reduce((pre, cur) => pre + parseFloat(cur.price.replace(/,/g, "")), 0)
+    const totalAmount = props.add.reduce((total, item) => total + parseFloat(item.price.replace(/,/g, "")) * item.quantity, 0)
     let displayPrice = totalAmount.toLocaleString("en-IN")
-
-    const countAdd = () => props.countIncriment;
-    const countDelet = () => props.countDecriment;
     
 
     // const color = () => {
@@ -40,7 +37,7 @@ export default function Cart(props) {
                             <h1 className='font-bold text-start mt-3'>Name : {items.name}</h1>
                             <h1 className='font-bold text-start'>Price : ₹ {items.price}</h1>
                             <div className='flex gap-6 mt-3 items-center'>
-                                <button onClick={} className='font-bold border p-1 px-3 buttonCart'>-</button>
+                                <button className='font-bold border p-1 px-3 buttonCart'>-</button>
                                 <p className=''>{items.quantity}</p>
                                 <button className='font-bold border p-1 px-3 buttonCart'>+</button>
                             </div>
