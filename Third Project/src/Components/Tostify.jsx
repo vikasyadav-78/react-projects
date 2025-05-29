@@ -3,8 +3,17 @@ import React from 'react'
 function Tostify(props) {
   return (
     <>
-        <div className='flex justify-end '>
-            <p className='bg-green-500 w-auto  px-4 rounded-lg'>{props.toast} </p>
+        <div className='w-40 bg-red-400 rounded-lg toastStyles'>
+            <p className=''>{props.toast} </p>
+        </div>
+        <div className='w-40 bg-blue-500 rounded-lg toastStyles'>
+            <p className=''>{props.toast} </p>
+        </div>
+        <div className='w-40 bg-blue-500 rounded-lg toastStyles '>
+            <p className=''>{props.toast} </p>
+        </div>
+        <div className='w-40 bg-blue-500 rounded-lg toastStyles'>
+            <p className=''>{props.toast} </p>
         </div>
     </>
   )
