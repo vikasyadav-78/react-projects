@@ -60,6 +60,7 @@ export default function ProductCart(props) {
       const newCart = [...addCartItem, { ...product, quantity: 1}]
       setAddCartItem(newCart)
       notify();
+      
     } else {
       const Updatequantity = [...addCartItem]
       Updatequantity[index].quantity += 1

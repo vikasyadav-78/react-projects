@@ -58,7 +58,7 @@ export default function Form() {
             setLogin(true)
             setpassword("")
             setuserName("")
-            showToast("You are login    ")
+            showToast("You are login")
             // notify();
         }
     }
@@ -90,7 +90,7 @@ export default function Form() {
 
     return (
         <>
-        {setToast && <Tostify toast={toast} />}
+        {setToast && <Tostify toast={toast}  />}
             {/* <div className={login == true ? "hidden" : "mt-10"}> */}
             {login === false ? <div>
                 <h1 className='text-2xl font-bold'>Log In </h1>
