@@ -1,21 +1,23 @@
 import React from 'react'
 import { useState } from 'react'
-import { ToastContainer, toast } from 'react-toastify';
+// import { ToastContainer, toast } from 'react-toastify';
 import Header from './Header';
+import Tostify from './Tostify';
 // import ProductCart from './ProductCart';
 
 export default function Form() {
 
     const [userName, setuserName] = useState('');
     const [Password, setpassword] = useState('');
-    const [login, setLogin] = useState(true);
+    const [login, setLogin] = useState(false);
     const [showpass, setshowpass] = useState("password");
+    const [toast , setToast] = useState("")
 
-    const notify = () => toast("WelCome back User ");
-    const notify1 = () => toast("Please Fill the input");
-    const notify2 = () => toast("Your password length is not Valid");
-    const notify3 = () => toast("Your Are Log Out ");
-    const notify4 = () => toast("Successfully Added");
+    // const notify = () => toast("WelCome back User ");
+    // const notify1 = () => toast("Please Fill the input");
+    // const notify2 = () => toast("Your password length is not Valid");
+    // const notify3 = () => toast("Your Are Log Out ");
+    // const notify4 = () => toast("Successfully Added");
 
     // const logIn = () => {
     //     let username = "Vikas@Yadav"
@@ -33,26 +35,36 @@ export default function Form() {
 
     // }
 
+    const showToast = (message) =>{
+        setToast(message)
+        setTimeout(() => {
+            setToast(null)
+        }, 3000);
+    }
+
     const butonSumbit = (e) => {
         e.preventDefault();// use for the form page not reload the summit
-        if (Password.length == "" || userName.length == "") {
-            notify1();
+        if (Password.length === 0 || userName.length === 0) {
+            // notify1();
+            showToast("fill the form")
             setpassword("")
             setuserName("")
         } else if (Password.length <= 8) {
-            notify2()
+            // notify2()
+            showToast("Please enter valid name and password")
             setpassword("")
             setuserName("")
         } else {
             setLogin(true)
             setpassword("")
             setuserName("")
-            notify();
-            console.log(notify)
+            showToast("You are login    ")
+            // notify();
         }
     }
+
     function showbtn() {
-        if (showpass == "password") {
+        if (showpass === "password") {
             setshowpass("text")
         }
         else {
@@ -78,6 +90,7 @@ export default function Form() {
 
     return (
         <>
+        {setToast && <Tostify toast={toast} />}
             {/* <div className={login == true ? "hidden" : "mt-10"}> */}
             {login === false ? <div>
                 <h1 className='text-2xl font-bold'>Log In </h1>
@@ -93,11 +106,11 @@ export default function Form() {
                         <button className='text-white p-1 mt-3 bg-sky-500 hover:bg-blue-600 '>Sign Up</button>
                     </form>
                 </div>
-            </div>:<div className={login == false ? "hidden" : "mt-10"}>
-                <Header logout = {logout} /> 
+            </div> : <div className={login === false ? "hidden" : "mt-10"}>
+                <Header logout={logout} />
                 {/* <ProductCart /> */}
-            </div>}        
-            <ToastContainer />
+            </div>}
+            {/* <ToastContainer /> */}
         </>
     )
 }

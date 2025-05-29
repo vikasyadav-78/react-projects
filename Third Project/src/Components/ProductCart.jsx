@@ -21,7 +21,7 @@ export default function ProductCart(props) {
   // console.log(filters);
 
   const notify = () => toast("Your Product added in cart");
-  const notify1 = () => toast("Your Product already added");
+  const notify1 = () => toast("Your Product already added and incriment product quntity");
   const handleFilter = (value) => {
     if (value != "All") {
       const filter = products.filter((item) => item.category === value);
@@ -59,10 +59,12 @@ export default function ProductCart(props) {
     if (index === -1) {
       const newCart = [...addCartItem, { ...product, quantity: 1}]
       setAddCartItem(newCart)
+      notify();
     } else {
       const Updatequantity = [...addCartItem]
       Updatequantity[index].quantity += 1
       setAddCartItem(Updatequantity)
+      notify1()
     }
   }
 
@@ -120,6 +122,7 @@ export default function ProductCart(props) {
         </div>
         )}
       </div>
+        <ToastContainer />
     </>
   )
 }
