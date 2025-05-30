@@ -13,10 +13,10 @@ function App() {
   return (
     <>
       {/* <Header /> */}
-      <Form />
+      {/* <Form /> */}
       <BrowserRouter>
         <Routes>
-          <Router path="" ></Router>
+          <Route path="/login" element={<Form />} ></Route>
         </Routes>
       </BrowserRouter>
       {/* <Tostify /> */}
