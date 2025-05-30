@@ -5,16 +5,22 @@ import './App.css'
 import Form from './Components/Form'
 import LikeunLikeCommet from './Components/LikeunLikeCommet'
 import Tostify from './Components/Tostify'
+import { BrowserRouter, Routes, Route, Router } from 'react-router-dom'
 // import Header from './Components/Header'
 // import ProductCart from './Components/ProductCart'
 
 function App() {
   return (
     <>
-     {/* <Header /> */}
-     <Form />
-     {/* <Tostify /> */}
-     {/* <LikeunLikeCommet /> */}
+      {/* <Header /> */}
+      <Form />
+      <BrowserRouter>
+        <Routes>
+          <Router path="" ></Router>
+        </Routes>
+      </BrowserRouter>
+      {/* <Tostify /> */}
+      {/* <LikeunLikeCommet /> */}
     </>
   )
 }
