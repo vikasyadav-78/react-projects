@@ -5,11 +5,10 @@ import Header from './Header';
 import Tostify from './Tostify';
 // import ProductCart from './ProductCart';
 
-export default function Form() {
+export default function Form(props) {
 
     const [userName, setuserName] = useState('');
     const [Password, setpassword] = useState('');
-    const [login, setLogin] = useState(false);
     const [showpass, setshowpass] = useState("password");
     const [toast , setToast] = useState("")
 
@@ -55,7 +54,7 @@ export default function Form() {
             setpassword("")
             setuserName("")
         } else {
-            setLogin(true)
+            props.setLogin(true)
             setpassword("")
             setuserName("")
             showToast("You are login")
@@ -84,7 +83,7 @@ export default function Form() {
     // }
 
     const logout = () => {
-        setLogin(false)
+        props.setLogin(false)
         notify3();
     }
 
@@ -92,7 +91,7 @@ export default function Form() {
         <>
         {setToast && <Tostify toast={toast}  />}
             {/* <div className={login == true ? "hidden" : "mt-10"}> */}
-            {login === false ? <div>
+            {props.login === false ? <div>
                 <h1 className='text-2xl font-bold'>Log In </h1>
                 <div className='flex justify-center mt-10 '>
                     <form action="" onSubmit={butonSumbit} className='grid grid-cols-1 shadow-2xl shadow-blue-600 p-4'>
@@ -106,7 +105,7 @@ export default function Form() {
                         <button className='text-white p-1 mt-3 bg-sky-500 hover:bg-blue-600 '>Sign Up</button>
                     </form>
                 </div>
-            </div> : <div className={login === false ? "hidden" : "mt-10"}>
+            </div> : <div className={props.login === false ? "hidden" : "mt-10"}>
                 <Header logout={logout} />
                 {/* <ProductCart /> */}
             </div>}
