@@ -1,31 +1,38 @@
 import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
 import './App.css'
 import Form from './Components/Form'
-// import LikeunLikeCommet from './Components/LikeunLikeCommet'
-// import Tostify from './Components/Tostify'
-import { BrowserRouter, Routes, Route, Router } from 'react-router-dom'
-import ProductCart from './Components/ProductCart'
-// import Header from './Components/Header'
-// import ProductCart from './Components/ProductCart'
+import { Routes, Route, useNavigate } from 'react-router-dom'
+import ProductCart from './Components/ProductCart';
+import Cart from './Components/Cart';
+import Header from './Components/Header';
+import LikeunLikeCommet from './Components/LikeunLikeCommet';
+import { useEffect } from 'react';
 
 function App() {
-      const [login, setLogin] = useState(false);
+  const [login, setLogin] = useState(false);
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (login) {
+      navigate('/productCarts')
+    } else navigate("/login")
+  }, [])
+
+
   return (
     <>
-      {/* <Header /> */}
-      {/* <Form /> */}
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Form login={login} setLogin={setLogin} />} />
+      <Routes>
+        <Route path="/login" element={<Form login={login} setLogin={setLogin} />} />
+        {login && (<>
           <Route path='/productCarts' element={<ProductCart />} />
-        </Routes>
-      </BrowserRouter>
-      {/* <Tostify /> */}
-      {/* <LikeunLikeCommet /> */}
+          <Route path='/likeunLikeCommet' element={<LikeunLikeCommet />} />
+        </>)}
+      </Routes>
+          {/* <Route path='/productCarts' element={<ProductCart />} /> */}
+
     </>
   )
 }
 
 export default App
+
