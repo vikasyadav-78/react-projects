@@ -3,9 +3,7 @@ import './App.css'
 import Form from './Components/Form'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import ProductCart from './Components/ProductCart';
-import Cart from './Components/Cart';
 import Header from './Components/Header';
-import LikeunLikeCommet from './Components/LikeunLikeCommet';
 import { useEffect } from 'react';
 
 function App() {
@@ -15,7 +13,7 @@ function App() {
 
   useEffect(()=>{
     if (login===true) {
-      navigate('/productCarts')
+      navigate('/header')
     }else navigate('/login')
   },[login])
 
@@ -23,11 +21,7 @@ function App() {
     <>
       <Routes>
         <Route path="/login" element={<Form login={login} setLogin={setLogin} />} />
-        {/* {login && (<>
-          <Route path='/productCarts' element={<ProductCart />} />
-          <Route path='/likeunLikeCommet' element={<LikeunLikeCommet />} />
-        </>)} */}
-          <Route path='/productCarts' element={<ProductCart />} />
+          <Route path='/header' element={<Header />} />
       </Routes>
 
     </>

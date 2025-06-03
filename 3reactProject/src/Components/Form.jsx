@@ -1,9 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
-// import { ToastContainer, toast } from 'react-toastify';
 import Header from './Header';
 import Tostify from './Tostify';
-// import ProductCart from './ProductCart';
 
 export default function Form(props) {
 
@@ -11,29 +9,6 @@ export default function Form(props) {
     const [Password, setpassword] = useState('');
     const [showpass, setshowpass] = useState("password");
     const [toast, setToast] = useState("")
-
-    // const notify = () => toast("WelCome back User ");
-    // const notify1 = () => toast("Please Fill the input");
-    // const notify2 = () => toast("Your password length is not Valid");
-    // const notify3 = () => toast("Your Are Log Out ");
-    // const notify4 = () => toast("Successfully Added");
-
-    // const logIn = () => {
-    //     let username = "Vikas@Yadav"
-    //     let password = "Vikas@7878"
-    //     if (username === userName && password === Password) {
-    //         notify();
-    //         setpassword("")
-    //         setuserName("")
-    //     } else {
-    //         notify1()
-    //         setpassword("")
-    //         setuserName("")
-    //     }
-
-
-    // }
-
     const showToast = (message) => {
         setToast(message)
         setTimeout(() => {
@@ -44,12 +19,10 @@ export default function Form(props) {
     const butonSumbit = (e) => {
         e.preventDefault();// use for the form page not reload the summit
         if (Password.length === 0 || userName.length === 0) {
-            // notify1();
             showToast("fill the form")
             setpassword("")
             setuserName("")
         } else if (Password.length <= 8) {
-            // notify2()
             showToast("Please enter valid name and password")
             setpassword("")
             setuserName("")
@@ -58,7 +31,6 @@ export default function Form(props) {
             setpassword("")
             setuserName("")
             showToast("You are login")
-            // notify();
         }
     }
 

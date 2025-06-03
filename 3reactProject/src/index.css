@@ -18,18 +18,6 @@
 }
 
 .toastStyles{
-  animation: toastify 2s;
   position: absolute;
   right: 30px;
-}
-
-@keyframes toastify {
-  from{
-    right : 30px;
-    top: -100px;
-  }
-  to{
-    right: 30px;
-    top: 20px;
-  }
 }

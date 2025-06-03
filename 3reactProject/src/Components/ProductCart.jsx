@@ -3,8 +3,8 @@ import { products } from '../Data/prodects'
 import { FaShoppingCart } from "react-icons/fa";
 import { MdDarkMode, MdLightMode, MdLogout } from "react-icons/md";
 import Cart from './Cart';
-import { ToastContainer, toast } from 'react-toastify';
 import LikeunLikeCommet from './LikeunLikeCommet';
+import Tostify from './Tostify';
 
 
 export default function ProductCart(props) {
@@ -12,16 +12,15 @@ export default function ProductCart(props) {
   const [mode, setMode] = useState("black");
   const [addCartItem, setAddCartItem] = useState([]);
   const [cartOpen, setCartOpen] = useState(false);
+  const [toast, setToast] = useState("")
 
+  const showToast = (message) => {
+    setToast(message)
+    setTimeout(() => {
+      setToast(null)
+    }, 3000);
+  }
 
-
-  // const filters = filterdData==="All"?products:products.filter((item)=>{
-  //   return item.category===filterdData
-  // })
-  // console.log(filters);
-
-  const notify = () => toast("Your Product added in cart");
-  const notify1 = () => toast("Your Product already added and incriment product quntity");
   const handleFilter = (value) => {
     if (value != "All") {
       const filter = products.filter((item) => item.category === value);
@@ -45,35 +44,28 @@ export default function ProductCart(props) {
     }
   }
 
-  // const cartsAdd = (prodect) => {
-  //   addCartItem.includes(prodect) ? addCartItem(notify1()) : setAddCartItem([...addCartItem, prodect])
-  //   notify();
-  // }
-
-
 
   const cartsAdd = (product) => {
     const index = addCartItem.findIndex((item) => {
       return product.id === item.id;
     })
     if (index === -1) {
-      const newCart = [...addCartItem, { ...product, quantity: 1}]
+      const newCart = [...addCartItem, { ...product, quantity: 1 }]
+      showToast("Your product added")
       setAddCartItem(newCart)
-      notify();
-      
     } else {
       const Updatequantity = [...addCartItem]
       Updatequantity[index].quantity += 1
       setAddCartItem(Updatequantity)
-      notify1()
     }
   }
 
-  
-  
+
+
 
   return (
     <>
+    {setToast && <Tostify toast={toast} />}
       <div className='flex justify-between relative' >
         <div className='text-start font-bold'>
           <label >Filter </label>
@@ -123,7 +115,6 @@ export default function ProductCart(props) {
         </div>
         )}
       </div>
-        <ToastContainer />
     </>
   )
 }
