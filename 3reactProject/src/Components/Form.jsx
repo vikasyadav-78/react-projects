@@ -10,7 +10,7 @@ export default function Form(props) {
     const [userName, setuserName] = useState('');
     const [Password, setpassword] = useState('');
     const [showpass, setshowpass] = useState("password");
-    const [toast , setToast] = useState("")
+    const [toast, setToast] = useState("")
 
     // const notify = () => toast("WelCome back User ");
     // const notify1 = () => toast("Please Fill the input");
@@ -34,7 +34,7 @@ export default function Form(props) {
 
     // }
 
-    const showToast = (message) =>{
+    const showToast = (message) => {
         setToast(message)
         setTimeout(() => {
             setToast(null)
@@ -89,7 +89,7 @@ export default function Form(props) {
 
     return (
         <>
-        {setToast && <Tostify toast={toast}  />}
+            {setToast && <Tostify toast={toast} />}
             {/* <div className={login == true ? "hidden" : "mt-10"}> */}
             {props.login === false ? <div>
                 <h1 className='text-2xl font-bold'>Log In </h1>
@@ -107,9 +107,8 @@ export default function Form(props) {
                 </div>
             </div> : <div className={props.login === false ? "hidden" : "mt-10"}>
                 <Header logout={logout} />
-                {/* <ProductCart /> */}
-            </div>}
-            {/* <ToastContainer /> */}
+            </div>
+            }
         </>
     )
 }

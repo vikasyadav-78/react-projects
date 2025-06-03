@@ -12,23 +12,23 @@ function App() {
   const [login, setLogin] = useState(false);
   const navigate = useNavigate()
 
-  useEffect(() => {
-    if (login) {
-      navigate('/productCarts')
-    } else navigate("/login")
-  }, [])
 
+  useEffect(()=>{
+    if (login===true) {
+      navigate('/productCarts')
+    }else navigate('/login')
+  },[login])
 
   return (
     <>
       <Routes>
         <Route path="/login" element={<Form login={login} setLogin={setLogin} />} />
-        {login && (<>
+        {/* {login && (<>
           <Route path='/productCarts' element={<ProductCart />} />
           <Route path='/likeunLikeCommet' element={<LikeunLikeCommet />} />
-        </>)}
+        </>)} */}
+          <Route path='/productCarts' element={<ProductCart />} />
       </Routes>
-          {/* <Route path='/productCarts' element={<ProductCart />} /> */}
 
     </>
   )
