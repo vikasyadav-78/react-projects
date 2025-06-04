@@ -60,7 +60,8 @@ export default function Form(props) {
     }
 
     return (
-        <>
+        <> 
+        
             {setToast && <Tostify toast={toast} />}
             {/* <div className={login == true ? "hidden" : "mt-10"}> */}
             {props.login === false ? <div>
