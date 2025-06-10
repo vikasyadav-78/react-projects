@@ -56,7 +56,6 @@ export default function Form(props) {
 
     const logout = () => {
         props.setLogin(false)
-        notify3();
     }
 
     return (

@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { AiFillLike, AiFillDislike } from "react-icons/ai";
 import { GrPowerReset } from "react-icons/gr";
-import { IoMdSend } from "react-icons/io";
-import { ToastContainer, toast } from 'react-toastify';
-
+import { IoMdSend } from "react-icons/io"; 
+import Tostify from './Tostify';
 
 
 export default function LikeunLikeCommet(props) {
@@ -11,19 +10,10 @@ export default function LikeunLikeCommet(props) {
     const [UnLike, setUnLike] = useState(0)
     const [commint, setCommint] = useState([])
     const [input, setInput] = useState("")
+    const [toast , setToast] = useState("")
 
 
-    const notify = () => toast.warn('Please Enter Your Commnet !', {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-    });
-
+   
     const like = () => {
         setLike(Like + 1)
     }
@@ -35,12 +25,19 @@ export default function LikeunLikeCommet(props) {
         setUnLike(0);
     }
 
+    const showToast = (message) => {
+        setToast(message)
+        setTimeout(() => {
+            setToast(null)
+        }, 3000);
+    }
+
     const comments = () => {
         if (input != "") {
             setCommint([...commint, input])
             setInput("")
         } else {
-            notify();
+            showToast('Please Enter Your Commit')
         }
     }
 
@@ -50,6 +47,7 @@ export default function LikeunLikeCommet(props) {
 
     return (
         <>
+        {setToast && <Tostify toast={toast}/>}
             <div className='flex gap-10 items-center'>
                 <div className='flex gap-2 '>
                     <button className='cursor-pointer text-2xl' onClick={like} ><AiFillLike /></button>
@@ -76,7 +74,6 @@ export default function LikeunLikeCommet(props) {
                         <p>{data}</p>
                     </div>
                 )}
-                <ToastContainer />
             </div>
         </>
     )

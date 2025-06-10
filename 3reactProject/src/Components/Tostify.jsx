@@ -5,7 +5,7 @@ function Tostify(props) {
     <>
         {props.toast==='You are login'  ? <div className='w-40 bg-blue-600 rounded-lg toastStyles'>
             <p className=''>{props.toast} </p>
-        </div> : <div className='w-40 bg-red-500 rounded-lg toastStyles'>
+        </div> : <div className={`w-auto bg-red-500 rounded-lg toastStyles`}>
             <p className=''>{props.toast} </p>
         </div>}
     
