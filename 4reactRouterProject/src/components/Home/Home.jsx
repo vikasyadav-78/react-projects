@@ -27,15 +27,17 @@ export default function Home() {
             </div>
 
             <div className='flex justify-around items-center flex-col md:flex-row md:space-y-0 space-y-15'>
-                <div>
-                    <img className='w-96' src={img1} alt="" />
+                <div className='w-full pt-12 h-full'>
+                    <img className='w-96' src={img1} alt="image1" />
                 </div>
                 <div className='text-right space-y-5'>
                     <div>
-                        <h1 className='whitespace-nowrap text-5xl font-bold lg:text-5xl sm:text-4xl'>Download Now </h1>
+                        <h1 className='whitespace-nowrap text-4xl font-bold lg:text-5xl sm:text-5xl'>Download Now </h1>
                         <h2 className='text-4xl md:block hidden font-bold'>Lorem Ipsum</h2>
                     </div>
-                    <Link to='/' className='inline-flex fw-bold rounded-lg font-medium bg-amber-700 px-6 py-3 items-center justify-center text-white hover:opacity-75'><IoLogoGooglePlaystore className='text-2xl' /> &nbsp; Download Now</Link>
+                    <div className='flex justify-center items-center'>
+                        <Link to='/' className='inline-flex rounded-lg font-medium bg-amber-700 px-6 py-3 items-center justify-center text-white hover:opacity-75'><IoLogoGooglePlaystore className='text-2xl' /> &nbsp; Download Now</Link>
+                    </div>
                 </div>
             </div>
 
