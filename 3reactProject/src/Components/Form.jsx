@@ -77,7 +77,7 @@ export default function Form(props) {
                 <h1 className='text-2xl font-bold'>Log In </h1>
                 <div className='flex justify-center mt-10 '>
                     <form action="" onSubmit={butonSumbit} className='grid grid-cols-1 shadow-2xl shadow-blue-600 p-4'>
-                        <input className='w-100 outline-0 border mt-3 p-1 rounded-sm' type="text" name="name" id="username" placeholder='Username' value={userName} onChange={getUserName} />
+                        <input className='w-auto outline-0 border mt-3 p-1 rounded-sm' type="text" name="name" id="username" placeholder='Username' value={userName} onChange={getUserName} />
 
                         <div className='flex align-middle relative mt-4'>
                             <input className='outline-0 shadow-2xl flex justify-content-center border  w-100 rounded mb-5 p-1 ' type={showpass} name="name" id="password" placeholder='Password' value={Password} onChange={getUserPassword} />
