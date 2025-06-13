@@ -71,7 +71,7 @@ export default function Header(props) {
           <Link className='font-semibold' to='/help'>Help</Link>
         </div>
         <div className='flex gap-5 items-center'>
-          <div className='text-start font-bold border-2 px-3 py-1 hidden lg:flex items-center'>
+          <div className='text-start font-bold border-2 px-3 py-1 hidden lg:flex items-center gap-1'>
             <label >Filter </label>
             <select name="" id="" className='outline-0 text-black bg-blue-100' onChange={(e) => handleFilter(e.target.value)}>
               <option className='font-bold text-white bg-black' value="All">(All)</option>

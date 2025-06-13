@@ -20,7 +20,7 @@ function App() {
         {/* <Route path="/" element={<Navigate to="/login" />} /> */}
         {/* <Route path='/' element={<ProductCart/>} />  */}
         <Route path="/login" element={<Form />} />
-        <Route path="/header" element={
+        <Route path="/" element={
           <ProtectedRoute> <Header /> </ProtectedRoute>
         } />
         <Route path="/home" element={

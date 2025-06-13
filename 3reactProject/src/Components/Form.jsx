@@ -38,9 +38,8 @@ export default function Form(props) {
             setuserName("")
             showToast("You are login")
             localStorage.setItem('token',JSON.stringify(true));
-            navigate('/header');
-        }
-        console.log('clcck');
+            navigate('/');
+        } 
         
     }
 
