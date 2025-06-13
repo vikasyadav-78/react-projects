@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { products } from '../Data/prodects'
 import { FaShoppingCart } from "react-icons/fa";
 import { MdDarkMode, MdLightMode, MdLogout } from "react-icons/md";
@@ -53,14 +53,21 @@ export default function ProductCart(props) {
       const newCart = [...addCartItem, { ...product, quantity: 1 }]
       showToast("Your product added")
       setAddCartItem(newCart)
+      localStorage.setItem("mydata",JSON.stringify(newCart));
     } else {
       const Updatequantity = [...addCartItem]
       Updatequantity[index].quantity += 1
       setAddCartItem(Updatequantity)
+      localStorage.setItem("mydata",JSON.stringify(newCart));
     }
   }
 
 
+  useEffect(()=>{
+
+    let getData = JSON.parse(localStorage.getItem("mydata"));
+    setAddCartItem(getData)
+  },[])
 
 
   return (
