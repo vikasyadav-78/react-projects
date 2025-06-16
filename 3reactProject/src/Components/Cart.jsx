@@ -4,8 +4,10 @@ export default function Cart(props) {
 
     const removeItem = (id) => {
         let updateCard = props.add.filter((item) => {
+            // localStorage.removeItem.id("mydata")
             return item.id !== id;
         })
+        localStorage.setItem('mydata',JSON.stringify(updateCard))
         props.setadd(updateCard)
     }
 

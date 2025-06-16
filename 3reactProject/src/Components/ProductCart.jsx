@@ -58,17 +58,19 @@ export default function ProductCart(props) {
       const Updatequantity = [...addCartItem]
       Updatequantity[index].quantity += 1
       setAddCartItem(Updatequantity)
-      localStorage.setItem("mydata",JSON.stringify(newCart));
+      localStorage.setItem("mydata",JSON.stringify(Updatequantity));
     }
   }
 
 
   useEffect(()=>{
-
     let getData = JSON.parse(localStorage.getItem("mydata"));
-    setAddCartItem(getData)
+    if (getData) {
+      setAddCartItem(getData)
+    }
   },[])
 
+  
 
   return (
     <>
