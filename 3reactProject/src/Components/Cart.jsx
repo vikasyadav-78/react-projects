@@ -7,34 +7,34 @@ export default function Cart(props) {
             // localStorage.removeItem.id("mydata")
             return item.id !== id;
         })
-        localStorage.setItem('mydata',JSON.stringify(updateCard))
+        localStorage.setItem('mydata', JSON.stringify(updateCard))
         props.setadd(updateCard)
     }
 
     const addquentity = (id) => {
-        const updateCard = props.add.map((item)=>{
-            if (item.id === id ) {
-                return {...item , quantity : item.quantity + 1}
+        const updateCard = props.add.map((item) => {
+            if (item.id === id) {
+                return { ...item, quantity: item.quantity + 1 }
             }
             return item;
         })
         props.setadd(updateCard)
     }
     const delquentity = (id) => {
-        const updateCard = props.add.map((item)=>{
-            if (item.id === id && item.quantity > 1)  {
-                return {...item , quantity:item.quantity - 1}
+        const updateCard = props.add.map((item) => {
+            if (item.id === id && item.quantity > 1) {
+                return { ...item, quantity: item.quantity - 1 }
             }
             return item;
         })
         props.setadd(updateCard)
     }
-    
 
-    
+
+
     const totalAmount = props.add.reduce((total, item) => total + parseFloat(item.price.replace(/,/g, "")) * item.quantity, 0)
     let displayPrice = totalAmount.toLocaleString("en-IN")
-    
+
 
     // const color = () => {
     //     if (props.mode === "light") {
@@ -59,9 +59,9 @@ export default function Cart(props) {
                             <h1 className='font-bold text-start mt-3'>Name : {items.name}</h1>
                             <h1 className='font-bold text-start' >Price : ₹ {items.price}</h1>
                             <div className='flex gap-6 mt-3 items-center'>
-                                <button onClick={()=>delquentity(items.id)} className='font-bold border p-1 px-3 buttonCart'>-</button>
+                                <button onClick={() => delquentity(items.id)} className='font-bold border p-1 px-3 buttonCart'>-</button>
                                 <p className=''>{items.quantity}</p>
-                                <button onClick={()=>addquentity(items.id)} className='font-bold border p-1 px-3 buttonCart'>+</button>
+                                <button onClick={() => addquentity(items.id)} className='font-bold border p-1 px-3 buttonCart'>+</button>
                             </div>
                         </div>
                         <button onClick={() => removeItem(items.id)} className='font-bold border p-1 px-3 buttonCart'>X</button>
