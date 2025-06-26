@@ -2,10 +2,8 @@ import React from 'react'
 import { useState } from 'react'
 import Header from './Header';
 import Tostify from './Tostify';
-import { Navigate, useNavigate } from 'react-router-dom';
 
 export default function Form(props) {
-    const navigate = useNavigate();
 
     const [userName, setuserName] = useState('');
     const [Password, setpassword] = useState('');
@@ -20,11 +18,7 @@ export default function Form(props) {
 
     const butonSumbit = (e) => {
         e.preventDefault();// use for the form page not reload the summit
-   
-    }
-
-    const submitButton = ()=>{
-             if (Password.length === 0 || userName.length === 0) {
+        if (Password.length === 0 || userName.length === 0) {
             showToast("fill the form")
             setpassword("")
             setuserName("")
@@ -33,14 +27,11 @@ export default function Form(props) {
             setpassword("")
             setuserName("")
         } else {
-            // props.setLogin(true)
+            props.setLogin(true)
             setpassword("")
             setuserName("")
             showToast("You are login")
-            localStorage.setItem('token',JSON.stringify(true));
-            navigate('/');
-        } 
-        
+        }
     }
 
     function showbtn() {
@@ -65,30 +56,31 @@ export default function Form(props) {
 
     const logout = () => {
         props.setLogin(false)
+        notify3();
     }
 
     return (
-        <> 
-        
+        <>
             {setToast && <Tostify toast={toast} />}
             {/* <div className={login == true ? "hidden" : "mt-10"}> */}
-      <div>
+            {props.login === false ? <div>
                 <h1 className='text-2xl font-bold'>Log In </h1>
                 <div className='flex justify-center mt-10 '>
                     <form action="" onSubmit={butonSumbit} className='grid grid-cols-1 shadow-2xl shadow-blue-600 p-4'>
-                        <input className='w-auto outline-0 border mt-3 p-1 rounded-sm' type="text" name="name" id="username" placeholder='Username' value={userName} onChange={getUserName} />
+                        <input className='w-100 outline-0 border mt-3 p-1 rounded-sm' type="text" name="name" id="username" placeholder='Username' value={userName} onChange={getUserName} />
 
                         <div className='flex align-middle relative mt-4'>
                             <input className='outline-0 shadow-2xl flex justify-content-center border  w-100 rounded mb-5 p-1 ' type={showpass} name="name" id="password" placeholder='Password' value={Password} onChange={getUserPassword} />
                             <p onClick={showbtn} className='border-0  absolute right-0 top-0 p-1 cursor-pointer'>Show</p>
 
                         </div>
-                        <button onClick={submitButton} className='text-white p-1 mt-3 bg-sky-500 hover:bg-blue-600 '>Sign Up</button>
+                        <button className='text-white p-1 mt-3 bg-sky-500 hover:bg-blue-600 '>Sign Up</button>
                     </form>
                 </div>
-            </div> 
-            
-
+            </div> : <div className={props.login === false ? "hidden" : "mt-10"}>
+                <Header logout={logout} />
+            </div>
+            }
         </>
     )
 }

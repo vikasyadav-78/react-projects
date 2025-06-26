@@ -1,13 +1,28 @@
-import { Navigate } from 'react-router-dom'
+import React from 'react'
+import { useNavigate } from 'react-router-dom';
+import Form from './Form';
+import Header from './Header';
+import Home from './Home';
 
-function ProtectedRoute({ children }) {
+function ProtectedRoute() {
+    const [login, setLogin] = useState(false);
+    const navigate = useNavigate()
 
-    
-    let protect  = JSON.parse(localStorage.getItem('token'));
-  if (!protect) {
-    return <Navigate to="/login" />
-  }
-  return children
+
+    useEffect(() => {
+        if (login === true) {
+            navigate('/header')
+        } else navigate('/login')
+    }, [login])
+
+    return (
+        <>
+            <Routes>
+                <Route path="/login" element={<Form login={login} setLogin={setLogin} />} />
+                <Route path='/header' element={<Home />} />
+            </Routes>
+        </>
+    )
 }
 
 export default ProtectedRoute

@@ -1,15 +1,16 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import ProductCart from './ProductCart'
 import Header from './Header'
+import ProductCart from './ProductCart'
 
 function Home(props) {
     return (
         <>
             {/* <Header /> */}
-            <div>
-                <ProductCart logout={props.logout} />
-            </div>
+            <ProductCart
+                logout={props.logout}
+                addCartItem ={props.addCartItem}
+                setAddCartItem ={props.setAddCartItem}
+            />
         </>
     )
 }

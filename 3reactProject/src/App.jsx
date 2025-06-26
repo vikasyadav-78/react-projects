@@ -1,43 +1,55 @@
-import { useState } from 'react'
+import React, { Suspense, useState } from 'react'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import './App.css'
 import Form from './Components/Form'
 import Header from './Components/Header'
 import ProtectedRoute from './Components/ProtectedRoute'
-import { Routes, Route, Navigate } from 'react-router-dom'
-import ProductCart from './Components/ProductCart'
 import Home from './Components/Home'
-import About from './Components/About'
 import Contact from './Components/Contact'
 import Help from './Components/Help'
+import Header from './Components/Header';
+const Home = React.lazy(() => import('./Components/Home'))
+const About = React.lazy(() => import('./Components/About'))
+const Contact = React.lazy(() => import('./Components/Contact'))
+const Help = React.lazy(() => import('./Components/Help'))
 
 function App() {
-  // const [login, setLogin] = useState(false)
+  return (
+    <>
+      {<Suspense fallback={<div className='mt-50 text-7xl'>Loading....</div>}>
+        <Header addCartItem={addCartItem} setAddCartItem={setAddCartItem} />
+
+        <Routes>
+          <Route path="/login" element={<Form login={login} setLogin={setLogin} />} />
+          <Route path='/' element={<Home addCartItem={addCartItem} setAddCartItem={setAddCartItem} />} />
+          <Route path="/about" element={<ProtectedRoute> <About /></ProtectedRoute>} />
+          <Route path="/contact" element={<ProtectedRoute> <Contact /> </ProtectedRoute>} />
+          <Route path="/help" element={<ProtectedRoute> <Help /> </ProtectedRoute>} />
+        </Routes>
+      </Suspense>}
+    </>
+  )
+}
+
+
+function App() {
+  const [login, setLogin] = useState(true);
+  const [addCartItem, setAddCartItem] = useState([])
+  const navigate = useNavigate()
 
   return (
     <>
+      {<Suspense fallback={<div className='mt-50 text-7xl'>Loading....</div>} >
+        <Routes>
+          <Route path='/about' element={<About />} />
+        </Routes>
+      </Suspense>}
 
-      <Routes>
-        {/* <Route path="/" element={<Navigate to="/login" />} /> */}
-        {/* <Route path='/' element={<ProductCart/>} />  */}
-        <Route path="/login" element={<Form />} />
-        <Route path="/" element={
-          <ProtectedRoute> <Header /> </ProtectedRoute>
-        } />
-        <Route path="/home" element={
-          <ProtectedRoute> <Home /> </ProtectedRoute>
-        } />
-        <Route path="/about" element={
-          <ProtectedRoute> <About /></ProtectedRoute>
-        } />
-        <Route path="/contact" element={
-          <ProtectedRoute> <Contact /> </ProtectedRoute>
-        } />
-        <Route path="/help" element={
-          <ProtectedRoute> <Help /> </ProtectedRoute>
-        } />
-      </Routes>
+      {/* <MultipalFrom /> */}
     </>
   )
 }
 
 export default App
+
+
