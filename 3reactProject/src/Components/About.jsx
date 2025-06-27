@@ -1,10 +1,8 @@
-import React from 'react'
-import Header from './Header'
+import React from 'react' 
 
 function About() {
     return (
         <>
-        <Header />
             <h1>Hello.. This page is About</h1>
         </>
     )

@@ -1,86 +1,45 @@
-import React from 'react'
-import { useState } from 'react'
-import Header from './Header';
-import Tostify from './Tostify';
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { ToastContainer, toast} from 'react-toastify';
 
-export default function Form(props) {
+function Form(props) {
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
 
-    const [userName, setuserName] = useState('');
-    const [Password, setpassword] = useState('');
-    const [showpass, setshowpass] = useState("password");
-    const [toast, setToast] = useState("")
-    const showToast = (message) => {
-        setToast(message)
-        setTimeout(() => {
-            setToast(null)
-        }, 3000);
-    }
-
-    const butonSumbit = (e) => {
-        e.preventDefault();// use for the form page not reload the summit
-        if (Password.length === 0 || userName.length === 0) {
-            showToast("fill the form")
-            setpassword("")
-            setuserName("")
-        } else if (Password.length <= 8) {
-            showToast("Please enter valid name and password")
-            setpassword("")
-            setuserName("")
+    const navigate = useNavigate()
+    const notify = () => toast("You Are Log in");
+    const filed = () => toast("Please Fill the input box");
+    const validation = () => {
+        if (password === "") {
+           toast.error("plese enetr password")
         } else {
-            props.setLogin(true)
-            setpassword("")
-            setuserName("")
-            showToast("You are login")
+            props.setIslogin(true)
+            localStorage.setItem('token', JSON.stringify(true));
+            navigate('/')
+            // toast.success("You are log in")
+          
         }
     }
 
-    function showbtn() {
-        if (showpass === "password") {
-            setshowpass("text")
-        }
-        else {
-            setshowpass("password")
-        }
-    }
-    function getUserName(e) {
-        setuserName(e.target.value)
-    }
-    function getUserPassword(e) {
-        setpassword(e.target.value)
-    }
-
-    // let localstorage = localStorage.setItem("isLogin",true)
-    // if (localstorage) {
-    //     setLogin(false)
-    // }
-
-    const logout = () => {
-        props.setLogin(false)
-        notify3();
+    const onSummbit = (e) => {
+        e.preventDefault()
     }
 
     return (
         <>
-            {setToast && <Tostify toast={toast} />}
-            {/* <div className={login == true ? "hidden" : "mt-10"}> */}
-            {props.login === false ? <div>
-                <h1 className='text-2xl font-bold'>Log In </h1>
-                <div className='flex justify-center mt-10 '>
-                    <form action="" onSubmit={butonSumbit} className='grid grid-cols-1 shadow-2xl shadow-blue-600 p-4'>
-                        <input className='w-100 outline-0 border mt-3 p-1 rounded-sm' type="text" name="name" id="username" placeholder='Username' value={userName} onChange={getUserName} />
-
-                        <div className='flex align-middle relative mt-4'>
-                            <input className='outline-0 shadow-2xl flex justify-content-center border  w-100 rounded mb-5 p-1 ' type={showpass} name="name" id="password" placeholder='Password' value={Password} onChange={getUserPassword} />
-                            <p onClick={showbtn} className='border-0  absolute right-0 top-0 p-1 cursor-pointer'>Show</p>
-
-                        </div>
-                        <button className='text-white p-1 mt-3 bg-sky-500 hover:bg-blue-600 '>Sign Up</button>
+            <div className='flex justify-center items-center mt-20'>
+                <div className='border-2 p-5 py-8'>
+                    <h1 className='font-bold text-xl'> Log in</h1>
+                    <form action="" onSubmit={onSummbit}>
+                        <input value={username} onChange={(e) => setUsername(e.target.value)} className='outline-0 mt-3 w-70 border-2 rounded px-3 py-1' type="text" placeholder='Username ' /> <br />
+                        <input value={password} onChange={(e) => setPassword(e.target.value)} className='outline-0 w-70 mt-4 border-2 rounded px-3 py-1' type="password" placeholder='Password ' /><br />
+                        <button type='submit' onClick={validation} className='bg-green-600 px-4 py-1 rounded-lg mt-5 cursor-pointer'>Sumbit</button>
                     </form>
                 </div>
-            </div> : <div className={props.login === false ? "hidden" : "mt-10"}>
-                <Header logout={logout} />
             </div>
-            }
+            <ToastContainer />
         </>
     )
 }
+
+export default Form

@@ -1,32 +1,40 @@
-import React, { useState } from 'react'
-import ProductCart from './ProductCart'
+import React, { useContext, useState } from 'react'
 import Navbar from './Navbar'
-import { Link, NavLink, Outlet } from 'react-router-dom'
-import Home from './Home'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { MdDarkMode, MdLightMode, MdLogout } from "react-icons/md";
 import { FaShoppingCart } from "react-icons/fa";
 import { useToggleTheam } from './ToggleTheam'
 import Cart from './Cart'
 // import Cart from './Cart'
+
+
+
+
+
+
 export default function Header(props) {
   const [cartOpen, setCartOpen] = useState(false);
   const { theam, setTheam } = useToggleTheam()
-  // const [addCartItem, setAddCartItem] = useState([]);
+  const navigate = useNavigate()
 
-
-  const color = () => {
+  const darkLight = () => {
     if (theam) {
-      document.body.style.backgroundColor = "white";
-      document.body.style.color = "black";
+      document.body.style.backgroundColor = "black"
+      document.body.style.color = "white"
       setTheam(false)
-    }
-    else {
-      document.body.style.backgroundColor = "black";
-      document.body.style.color = "white";
-      setTheam(true);
+    } else {
+      document.body.style.backgroundColor = "white"
+      document.body.style.color = "black"
+      setTheam(true)
     }
   }
 
+
+
+  const logout = () => {
+    navigate('/login')
+    localStorage.removeItem("token")
+  }
 
   // const addCart = (prodect) =>{
   //   const index = addCartItem.findIndex((item)=>{
@@ -53,20 +61,18 @@ export default function Header(props) {
         <div className='flex gap-10'>
           <NavLink className={({ isActive }) => isActive ? "text-blue-600" : ""} to='/' >Home</NavLink>
           <NavLink className={({ isActive }) => isActive ? "text-blue-600" : ""} to='/about' >About</NavLink>
-          <NavLink className={({ isActive }) => isActive ? "text-blue-600" : " "} to='/weather' >Weather</NavLink>
-          <NavLink className={({ isActive }) => isActive ? "text-blue-600" : " "} to='/github' >Github</NavLink>
-          <NavLink className={({ isActive }) => isActive ? "text-blue-600" : ""} to='/todo' >Todo</NavLink>
-          <NavLink className={({ isActive }) => isActive ? "text-blue-600" : ""} to='/multipalForms' >MultipalForms</NavLink>
-          <NavLink className={({ isActive }) => isActive ? "text-blue-600" : ""} to='/feedback' >Feedback</NavLink>
+          <NavLink className={({ isActive }) => isActive ? "text-blue-600" : ""} to='/contact' >Contact</NavLink>
+          <NavLink className={({ isActive }) => isActive ? "text-blue-600" : ""} to='/help' >Help</NavLink>
+
         </div>
-        <div>
+        {/* <div>
           <div className='flex items-center'>
             <div className='me-10'>
               {theam === true ? <button onClick={color}><MdLightMode className='text-2xl cursor-pointer' /></button> : <button><MdDarkMode className='text-2xl cursor-pointer' onClick={color} /></button>}
             </div>
             <div className='flex'>
               <button onClick={() => setCartOpen((prev) => !prev)} className='cursor-pointer'><FaShoppingCart className='text-2xl' /></button>
-              {props.addCartItem.length > 0 && (
+              {props.addCartItem > 0 && (
                 <span className='bg-blue-700 h-5 w-5 pt-0.5 rounded-full'>
                   <sup className='font-bold'>{props.addCartItem.length}</sup>
                 </span>
@@ -77,7 +83,14 @@ export default function Header(props) {
             </div>
 
           </div>
+        </div> */}
+
+        <div className='flex gap-4'>
+          {theam === true ? <button className='cursor-pointer font-bold' onClick={darkLight}><MdDarkMode className='text-3xl' /></button> :
+            <button className='cursor-pointer font-bold' onClick={darkLight}><MdLightMode className='text-3xl' /></button>}
+          <button className='cursor-pointer font-bold' onClick={logout}><MdLogout className='text-3xl' /></button>
         </div>
+
       </div>
       {cartOpen && <div className={theam === true ? 'absolute top-45 w-100 text-white right-20 p-4 bg-black shadow-2xl shadow-amber-300 ' : 'absolute top-15  right-20 p-4 w-100 bg-white text-black shadow-2xl shadow-amber-300 '}>
         <div className='flex p-5 justify-between border-b'>
@@ -92,3 +105,13 @@ export default function Header(props) {
     </div>
   )
 }
+
+
+
+
+
+
+
+
+
+
