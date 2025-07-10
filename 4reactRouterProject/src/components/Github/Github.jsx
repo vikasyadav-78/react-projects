@@ -1,23 +1,45 @@
-import React from 'react'
-import { useLoaderData } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { TiUpload } from 'react-icons/ti'
 
 const Github = () => {
-    const data = useLoaderData()
-    return (
-        <>
-            <div className='text-center m-4 bg-gray-600 text-white p-4 text-3xl'>Github followers:
-                {/* {data.followers} */}
-                <img src={data.avatar_url} alt="Git picture" width={300} />
-                <img src="https://1000logos.net/wp-content/uploads/2021/05/GitHub-logo.png" alt="" />
-            </div>
 
-        </>
-    )
+    const [data, setdata] = useState(null)
+    const [loading,setLoading] = useState(true)
+
+    useEffect(() => {
+        fetch('https://api.github.com/users/vikasyadav-78')
+            .then(response => response.json())
+        
+          .then((value)=>{
+            setdata(value)
+            setLoading(false)
+          }).catch((err)=>{
+            console.log(err) 
+            setLoading(false)
+        })
+    }, [])
+
+console.log(data);
+  
+  if (loading) return <p>Loading...</p>
+
+  if (!data) return <p>Error loading data.</p>
+
+  return (
+    <>
+      <p>{data.login}</p>
+      <div className='text-center m-4 bg-gray-600 text-white p-4 text-3xl'>
+        Github followers: {data.followers}
+        <div>
+          <img src={data.avatar_url} alt="GitHub avatar" width={200} />
+        </div>
+      </div>
+    </>
+  )
 }
 
 export default Github
 
-export const githubInfoLoader = async () => {
-    const response = await fetch('https://api.github.com/users/hiteshchoudhary')
-    return response.json()
-}
+
+
+
