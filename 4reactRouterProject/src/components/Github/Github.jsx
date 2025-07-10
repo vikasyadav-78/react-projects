@@ -1,37 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import { TiUpload } from 'react-icons/ti'
+import { useLoaderData } from 'react-router-dom'
 
 const Github = () => {
 
-    const [data, setdata] = useState(null)
-    const [loading,setLoading] = useState(true)
-
-    useEffect(() => {
-        fetch('https://api.github.com/users/vikasyadav-78')
-            .then(response => response.json())
-        
-          .then((value)=>{
-            setdata(value)
-            setLoading(false)
-          }).catch((err)=>{
-            console.log(err) 
-            setLoading(false)
-        })
-    }, [])
-
-console.log(data);
-  
-  if (loading) return <p>Loading...</p>
-
-  if (!data) return <p>Error loading data.</p>
+  const data = useLoaderData()
 
   return (
     <>
-      <p>{data.login}</p>
-      <div className='text-center m-4 bg-gray-600 text-white p-4 text-3xl'>
-        Github followers: {data.followers}
+      {/* <p>{data.login}</p> */}
+      <div className='m-4 bg-gray-600 text-white p-4  grid lg:grid-cols-2 sm:grid-cols-1'>
         <div>
-          <img src={data.avatar_url} alt="GitHub avatar" width={200} />
+          <img className='rounded-lg' src={data.avatar_url} alt="Git picture" style={{width : "50%"}} />
+        </div>
+        <div className='text-start text-2xl font-semibold py-10'>
+          <p className='py-1'>Username :- {data.login}</p>
+          <p className='py-1'>Github followers :- {data.followers}</p>
+          <p className='py-1'>Github folloing :- {data.following}</p>
+          <p className='py-1 pb-1'>Github public_repos :- {data.public_repos}</p>
+          <a className='' href='https://github.com/vikasyadav-78'>Link :- {data.url}</a>
         </div>
       </div>
     </>
@@ -41,5 +28,9 @@ console.log(data);
 export default Github
 
 
+export const githubFolder = async () => {
+  const response = await fetch('https://api.github.com/users/vikasyadav-78')
+  return response.json()
+}
 
 

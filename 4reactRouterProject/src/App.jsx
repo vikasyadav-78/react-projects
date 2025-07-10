@@ -7,7 +7,7 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import Layout from './Layout'
 import About from './components/About/About'
 import Contact from './components/Contact/Contact'
-import Github from './components/Github/Github'
+import Github, { githubFolder } from './components/Github/Github'
 
 function App() {
 
@@ -42,7 +42,11 @@ function App() {
         <Route path='' element={<Home />} />
         <Route path='about' element={<About />} />
         <Route path='contact' element={<Contact />} />
-        <Route path='github' element={<Github />} />
+        <Route
+          loader={githubFolder}
+          path='github'
+          element={<Github />}
+        />
       </Route>
     )
   )
