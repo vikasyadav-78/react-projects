@@ -13,10 +13,12 @@ function Form(props) {
         if (password === "") {
            toast.error("plese enetr password")
         } else {
-            props.setIslogin(true)
+            props.setLogin(true)
             localStorage.setItem('token', JSON.stringify(true));
             navigate('/')
-            // toast.success("You are log in")
+            toast.success("You are log in")
+            setUsername('')
+            setPassword('')
           
         }
     }

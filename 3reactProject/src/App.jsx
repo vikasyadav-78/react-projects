@@ -15,16 +15,15 @@ const Help = React.lazy(() => import('./Components/Help'))
 
 
 function App() {
-  const [isLogin, setIslogin] = useState(false)
+  // const [isLogin, setIslogin] = useState(false)
 
   const [login, setLogin] = useState(false);
   const [addCartItem, setAddCartItem] = useState([])
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   return (
     <>
       {<Suspense fallback={<div className='mt-50 text-7xl'>Loading....</div>}>
         <Header addCartItem={addCartItem} setAddCartItem={setAddCartItem} />
-
         <Routes>
           <Route path="/login" element={<Form login={login} setLogin={setLogin} />} />
           <Route path='/' element={<Home addCartItem={addCartItem} setAddCartItem={setAddCartItem} />} />
